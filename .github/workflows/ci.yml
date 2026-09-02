@@ -31,9 +31,10 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: "1"
 
-      - name: Check for em dashes
+      - name: Check for em dashes in tracked source
         run: |
-          if grep -rnP "\x{2014}" --include="*.ts" --include="*.tsx" --include="*.md" --include="*.css" --include="*.json" .; then
-            echo "Found an em dash. Use a hyphen or reword."
+          if git ls-files -z -- '*.ts' '*.tsx' '*.css' '*.md' '*.mjs' '*.yml' '*.svg' \
+            | xargs -0 grep -lnP "\x{2014}|\x{2013}"; then
+            echo "Found an em or en dash in tracked source. Use a hyphen or reword."
             exit 1
           fi
