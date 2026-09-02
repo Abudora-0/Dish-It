@@ -120,7 +120,7 @@ export function CommandPalette({
           >
             <button
               aria-label="Close search"
-              className="absolute inset-0 bg-[hsl(var(--ink)/0.5)] backdrop-blur-sm"
+              className="absolute inset-0 bg-[rgba(8,6,4,0.55)] backdrop-blur-sm"
               onClick={() => setOpen(false)}
             />
             <motion.div
