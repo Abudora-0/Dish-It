@@ -1,0 +1,278 @@
+@import "tailwindcss";
+
+/*
+  Dish It design system: "Mise en Place"
+  A warm culinary editorial look. Tokens drive light and dark themes.
+*/
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+
+  /* Core surfaces */
+  --paper: 40 44% 96%;
+  --paper-raised: 40 40% 92%;
+  --ink: 24 18% 12%;
+  --ink-soft: 24 10% 34%;
+  --ink-faint: 24 8% 52%;
+  --line: 30 20% 82%;
+
+  /* Brand */
+  --ember: 12 78% 52%;
+  --ember-deep: 8 72% 42%;
+  --saffron: 38 92% 56%;
+  --basil: 138 34% 42%;
+  --plum: 336 38% 44%;
+  --blueberry: 224 44% 52%;
+
+  /* Semantic */
+  --bg: hsl(var(--paper));
+  --bg-raised: hsl(var(--paper-raised));
+  --fg: hsl(var(--ink));
+  --fg-soft: hsl(var(--ink-soft));
+  --fg-faint: hsl(var(--ink-faint));
+  --border: hsl(var(--line));
+  --accent: hsl(var(--ember));
+  --accent-contrast: 40 44% 97%;
+
+  --shadow-color: 24 40% 20%;
+  --radius: 0.9rem;
+
+  --grain-opacity: 0.045;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper: 24 14% 9%;
+  --paper-raised: 24 12% 13%;
+  --ink: 36 40% 94%;
+  --ink-soft: 34 14% 72%;
+  --ink-faint: 30 10% 54%;
+  --line: 28 12% 24%;
+
+  --ember: 14 84% 60%;
+  --ember-deep: 10 76% 50%;
+  --saffron: 40 94% 62%;
+  --basil: 138 32% 56%;
+  --plum: 336 44% 64%;
+  --blueberry: 224 56% 68%;
+
+  --accent-contrast: 24 20% 8%;
+  --shadow-color: 0 0% 0%;
+  --grain-opacity: 0.07;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
+  --color-fg-faint: var(--fg-faint);
+  --color-border: var(--border);
+
+  --color-ember: hsl(var(--ember));
+  --color-ember-deep: hsl(var(--ember-deep));
+  --color-saffron: hsl(var(--saffron));
+  --color-basil: hsl(var(--basil));
+  --color-plum: hsl(var(--plum));
+  --color-blueberry: hsl(var(--blueberry));
+
+  --font-display: var(--font-fraunces), "Georgia", serif;
+  --font-sans: var(--font-inter), "Helvetica Neue", system-ui, sans-serif;
+  --font-mono: var(--font-space-mono), "SFMono-Regular", ui-monospace, monospace;
+
+  --radius-lg: 1.2rem;
+  --radius-xl: 1.8rem;
+
+  --ease-plate: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv05";
+    line-height: 1.6;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background-color: hsl(var(--saffron) / 0.35);
+    color: var(--fg);
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ember));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Themed scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--ember) / 0.55) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  *::-webkit-scrollbar-track {
+    background: hsl(var(--paper-raised));
+    border-radius: 999px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      hsl(var(--ember)),
+      hsl(var(--ember-deep))
+    );
+    border: 3px solid hsl(var(--paper-raised));
+    border-radius: 999px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(hsl(var(--saffron)), hsl(var(--ember)));
+  }
+
+  input, select, textarea, button {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+@layer components {
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .edge {
+    border: 1px solid var(--border);
+  }
+
+  .card-paper {
+    background-color: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 1px 0 hsl(var(--shadow-color) / 0.04),
+      0 12px 30px -18px hsl(var(--shadow-color) / 0.28);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .display-fluid {
+    font-size: clamp(2.6rem, 7vw, 6rem);
+  }
+
+  .underline-sizzle {
+    background-image: linear-gradient(hsl(var(--ember)), hsl(var(--ember)));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 2px;
+    transition: background-size 0.35s var(--ease-out-soft);
+  }
+  .underline-sizzle:hover {
+    background-size: 100% 42%;
+    background-image: linear-gradient(
+      hsl(var(--saffron) / 0.5),
+      hsl(var(--saffron) / 0.5)
+    );
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background-color: var(--bg);
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
+  }
+}
+
+@layer utilities {
+  .steam {
+    animation: steam 3.4s ease-in-out infinite;
+  }
+  .float-slow {
+    animation: float 7s ease-in-out infinite;
+  }
+  .spin-slow {
+    animation: spin 24s linear infinite;
+  }
+  .sizzle-ring {
+    animation: sizzle 0.6s var(--ease-out-soft);
+  }
+}
+
+@keyframes steam {
+  0% { transform: translateY(6px) scaleX(1); opacity: 0; }
+  30% { opacity: 0.7; }
+  70% { opacity: 0.2; }
+  100% { transform: translateY(-26px) scaleX(1.4); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-12px) rotate(1.5deg); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes sizzle {
+  0% { transform: scale(0.4); opacity: 0.7; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes drip {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; color: #000; }
+  .card-paper { box-shadow: none; border: 1px solid #ccc; }
+}

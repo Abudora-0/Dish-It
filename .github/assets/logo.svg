@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" width="420" height="120" fill="none">
+  <rect width="420" height="120" rx="18" fill="#1c140e"/>
+
+  <!-- steam -->
+  <g stroke="#f2a83c" stroke-width="3" stroke-linecap="round" opacity="0.9">
+    <path d="M70 44 q 10 -14 0 -28 q -10 -14 0 -28">
+      <animate attributeName="opacity" values="0;0.9;0" dur="2.4s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0 6; 0 -14" dur="2.4s" repeatCount="indefinite"/>
+    </path>
+    <path d="M86 44 q -10 -14 0 -28 q 10 -14 0 -28">
+      <animate attributeName="opacity" values="0;0.8;0" dur="2.4s" begin="0.5s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0 6; 0 -16" dur="2.4s" begin="0.5s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- tossed morsel -->
+  <circle r="9" fill="#e8724c" cx="52" cy="70">
+    <animate attributeName="cx" values="52;66;80;52" keyTimes="0;0.35;0.55;1" dur="2.6s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="70;36;36;70" keyTimes="0;0.4;0.55;0.78" dur="2.6s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- skillet -->
+  <g>
+    <animateTransform attributeName="transform" type="rotate" values="-16 62 84; -16 62 84; 14 62 84; -16 62 84" keyTimes="0;0.2;0.55;1" dur="2.6s" repeatCount="indefinite"/>
+    <ellipse cx="62" cy="84" rx="30" ry="13" fill="#f6ecd9"/>
+    <ellipse cx="62" cy="84" rx="30" ry="13" fill="none" stroke="#f6ecd9" stroke-width="4"/>
+    <rect x="88" y="80" width="36" height="8" rx="4" fill="#f6ecd9"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="150" y="76" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="600" fill="#f6ecd9">Dish It</text>
+  <circle cx="300" cy="40" r="5" fill="#e8724c">
+    <animate attributeName="cy" values="40;33;40" dur="1.6s" repeatCount="indefinite"/>
+  </circle>
+</svg>
