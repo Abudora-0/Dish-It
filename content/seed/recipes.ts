@@ -18,7 +18,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 20,
     cookMinutes: 30,
     servings: 4,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "A bowl of glossy orange butter chicken topped with cream and coriander",
     intro:
       "A faster take on the restaurant classic. The sauce leans on bloomed spices and a splash of cream rather than an overnight marinade, so it lands on the table in under an hour.",
@@ -68,7 +68,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 10,
     cookMinutes: 12,
     servings: 2,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1599789197237-5866b38a5774?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "A bowl of charred corn with lime crema, cotija, and chili",
     intro:
       "Everything you love about street corn, loosened into a bowl you can eat with a spoon. Char the kernels hard so they keep a smoky bite under the dressing.",
@@ -109,7 +109,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 15,
     cookMinutes: 25,
     servings: 2,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1623341214825-9f4f963727da?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "A steaming bowl of miso ramen with mushrooms, corn, and a soft egg",
     intro:
       "A weeknight broth that tastes long simmered thanks to roasted mushrooms and a spoonful of miso stirred in at the very end so it stays alive.",
@@ -152,7 +152,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 10,
     cookMinutes: 15,
     servings: 3,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "Three corn tortillas filled with smoky black beans, slaw, and avocado",
     intro:
       "Pantry tacos with real depth. Chipotle and a squeeze of lime turn a can of beans into a filling nobody guesses was fifteen minutes of work.",
@@ -194,7 +194,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 15,
     cookMinutes: 75,
     servings: 4,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "A golden roast chicken with lemon halves and herbs on a board",
     intro:
       "The one recipe worth memorizing. A dry brine the night before is the only trick, and it turns an ordinary bird into something with shatteringly crisp skin.",
@@ -235,7 +235,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 5,
     cookMinutes: 15,
     servings: 2,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1579349443343-73da56a71a20?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "Golden pan fried gnocchi with crisp sage leaves and brown butter",
     intro:
       "Skip the boiling water. Shelf stable gnocchi crisps up like a tiny potato roast straight in the pan, then gets tossed in nutty brown butter.",
@@ -273,7 +273,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 10,
     cookMinutes: 20,
     servings: 4,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "Salmon fillets glazed with harissa over chickpeas and cherry tomatoes",
     intro:
       "A sheet pan dinner with a glaze that caramelizes at the edges. Chickpeas and tomatoes roast underneath and soak up everything that drips down.",
@@ -314,7 +314,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 10,
     cookMinutes: 35,
     servings: 4,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1626500155537-93690c24099e?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "A pot of yellow dal with a bright tempering of spices poured over the top",
     intro:
       "Comfort in a bowl. The lentils cook down until creamy, then a sizzling tadka of cumin, garlic, and chili gets poured over just before serving.",
@@ -355,7 +355,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 20,
     cookMinutes: 45,
     servings: 10,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1516054117207-bdedfab486c2?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "A single layer olive oil cake with a honey glaze and flaky salt",
     intro:
       "Moist for days and barely sweet, this is the cake for people who say they do not like cake. A honey glaze soaks in while it is still warm.",
@@ -397,7 +397,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 15,
     cookMinutes: 12,
     servings: 18,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "Crackle topped chocolate cookies with a nutty tahini swirl",
     intro:
       "Fudgy in the center with a paper thin crackle on top. Tahini keeps them from being too rich and adds a savory hum you cannot quite place.",
@@ -439,7 +439,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 20,
     cookMinutes: 25,
     servings: 8,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1633933358116-a27b902fad35?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "Scoops of pink strawberry ice cream with visible fruit ripples",
     intro:
       "Roasting the berries first drives off water and concentrates their flavor, so the finished scoop tastes like summer even in January. No machine required.",
@@ -478,7 +478,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 5,
     cookMinutes: 0,
     servings: 1,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "A thick tan milkshake with a peanut butter drizzle down the glass",
     intro:
       "The one to blend after a hard session. Real numbers on the protein, enough carbs to actually refuel, and it tastes like a milkshake you would order on purpose.",
@@ -516,7 +516,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 5,
     cookMinutes: 0,
     servings: 1,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "A vivid green shake with a pineapple wedge on the rim",
     intro:
       "Bright, not grassy. Pineapple and lime do the heavy lifting so the spinach just rides along for the color and the iron.",
@@ -554,7 +554,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 5,
     cookMinutes: 0,
     servings: 2,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "A retro coffee malt shake with whipped cream and a straw",
     intro:
       "A grown up malted shake. Cold brew keeps it from being cloying and the malt powder gives that old soda fountain roundness.",
@@ -592,7 +592,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 10,
     cookMinutes: 10,
     servings: 6,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1601390395693-364c0e22031a?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "A jug of deep magenta hibiscus cooler over ice with lime",
     intro:
       "Tart, floral, and the most striking color in the fridge. Brew it strong, sweeten lightly, and let everyone cut it with soda to taste.",
@@ -631,7 +631,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 10,
     cookMinutes: 0,
     servings: 4,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1527499861446-cc219aea45ae?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "A pale green cucumber agua fresca with mint and lime wheels",
     intro:
       "The most refreshing thing you can make in five minutes. Blend, strain, chill. It tastes like the inside of a cucumber, in the best way.",
@@ -669,7 +669,7 @@ export const recipes: Recipe[] = [
     prepMinutes: 5,
     cookMinutes: 10,
     servings: 2,
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1669219695489-9163d12a2611?auto=format&fit=crop&w=1400&q=75",
     heroAlt: "Two mugs of golden turmeric milk with a cinnamon stick",
     intro:
       "A bedtime mug that actually earns its place. Simmering the spices in fat, then whisking hard, is what turns this from dusty to silky.",
