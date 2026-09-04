@@ -11,9 +11,10 @@ type Props = {
 };
 
 /*
-  Dish It mark: a skillet that tosses a morsel in an arc while steam curls off
-  the pan. The wordmark sits beside it with a bouncing drop for the dot on the i.
-  Everything freezes into a clean static state under reduced motion.
+  Dish It mark: a domed serving cloche that lifts to release steam, then settles.
+  The wordmark carries a sizzle underline that draws itself and a bouncing sauce
+  drop for the tittle on the i. Everything freezes to a clean static state under
+  reduced motion.
 */
 export function AnimatedLogo({
   className,
@@ -23,32 +24,22 @@ export function AnimatedLogo({
 }: Props) {
   const reduce = useReducedMotion();
 
-  const toss = reduce
+  const loop = { duration: 3.8, repeat: Infinity, repeatDelay: 1.1 };
+  const times = [0, 0.18, 0.36, 0.62, 0.8, 1];
+
+  const domeMotion = reduce
     ? {}
     : {
-        rotate: [-18, -18, 14, -18],
-        transition: {
-          duration: 2.6,
-          times: [0, 0.25, 0.55, 1],
-          repeat: Infinity,
-          repeatDelay: 1.4,
-          ease: "easeInOut" as const,
-        },
+        y: [0, 0, -7, -7, 0, 0],
+        transition: { ...loop, times, ease: "easeInOut" as const },
       };
 
-  const morsel = reduce
-    ? {}
+  const steamMotion = reduce
+    ? { opacity: 0 }
     : {
-        y: [0, -34, -34, 0],
-        x: [0, 10, 22, 30],
-        rotate: [0, 180, 320, 420],
-        transition: {
-          duration: 2.6,
-          times: [0.2, 0.4, 0.55, 0.75],
-          repeat: Infinity,
-          repeatDelay: 1.4,
-          ease: "easeOut" as const,
-        },
+        opacity: [0, 0, 0.85, 0.5, 0, 0],
+        y: [4, 4, -3, -11, -15, -15],
+        transition: { ...loop, times, ease: "easeOut" as const },
       };
 
   return (
@@ -59,104 +50,99 @@ export function AnimatedLogo({
         viewBox="0 0 64 64"
         className={cn("h-9 w-9 shrink-0 overflow-visible", markClassName)}
         initial={false}
-        whileHover={interactive && !reduce ? { scale: 1.06 } : undefined}
+        whileHover={interactive && !reduce ? { scale: 1.07 } : undefined}
         aria-hidden="true"
       >
-        <defs>
-          <linearGradient id="dishit-pan" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="hsl(var(--ink))" />
-            <stop offset="1" stopColor="hsl(var(--ink-soft))" />
-          </linearGradient>
-        </defs>
+        <g strokeLinecap="round" fill="none" strokeWidth="2.6">
+          <motion.path
+            d="M26 42 q 5 -8 0 -15 q -4 -6 0 -12"
+            stroke="hsl(var(--saffron))"
+            animate={steamMotion}
+          />
+          <motion.path
+            d="M38 42 q -5 -8 0 -15 q 4 -6 0 -12"
+            stroke="hsl(var(--saffron))"
+            animate={
+              reduce
+                ? { opacity: 0 }
+                : {
+                    ...steamMotion,
+                    transition: {
+                      ...loop,
+                      times,
+                      ease: "easeOut" as const,
+                      delay: 0.25,
+                    },
+                  }
+            }
+          />
+        </g>
 
-        {!reduce &&
-          [0, 1, 2].map((i) => (
-            <motion.path
-              key={i}
-              d={`M${24 + i * 7} 24 q ${i % 2 ? 6 : -6} -7 0 -14 q ${
-                i % 2 ? -6 : 6
-              } -7 0 -14`}
-              fill="none"
-              stroke="hsl(var(--saffron))"
-              strokeWidth="2.4"
-              strokeLinecap="round"
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: [0, 0.8, 0], y: [6, -10, -20] }}
-              transition={{
-                duration: 2.2,
-                repeat: Infinity,
-                delay: i * 0.4,
-                ease: "easeOut",
-              }}
-            />
-          ))}
-
-        <motion.circle
-          cx="20"
-          cy="30"
-          r="5.4"
-          fill="hsl(var(--ember))"
-          animate={morsel}
-          style={{ originX: "20px", originY: "30px" }}
+        <ellipse cx="32" cy="52" rx="22" ry="5" fill="hsl(var(--ink))" />
+        <rect
+          x="11"
+          y="45"
+          width="42"
+          height="5"
+          rx="2.5"
+          fill="hsl(var(--ink))"
         />
 
-        <motion.g animate={toss} style={{ originX: "26px", originY: "40px" }}>
-          <ellipse
-            cx="26"
-            cy="40"
-            rx="17"
-            ry="7.5"
-            fill="url(#dishit-pan)"
-          />
-          <ellipse
-            cx="26"
-            cy="38.5"
-            rx="17"
-            ry="7.5"
-            fill="var(--bg-raised)"
-          />
-          <ellipse
-            cx="26"
-            cy="38.5"
-            rx="17"
-            ry="7.5"
-            fill="none"
-            stroke="hsl(var(--ink))"
-            strokeWidth="2.4"
-          />
-          <rect
-            x="41"
-            y="36"
-            width="20"
-            height="5"
-            rx="2.5"
-            fill="hsl(var(--ink))"
-          />
+        <motion.g
+          animate={domeMotion}
+          style={{ originX: "32px", originY: "46px" }}
+        >
+          <path d="M14 46 A18 20 0 0 1 50 46 Z" fill="hsl(var(--ink))" />
+          <circle cx="32" cy="25" r="3" fill="hsl(var(--ember))" />
         </motion.g>
       </motion.svg>
 
       {withWordmark && (
-        <span className="font-display text-[1.35rem] font-semibold leading-none tracking-tight">
-          Dish
-          <span className="relative mx-[0.12em] inline-block">
-            It
+        <span className="relative font-display text-[1.35rem] font-semibold leading-none tracking-tight">
+          {!reduce && (
+            <motion.svg
+              width="10"
+              height="14"
+              viewBox="0 0 10 14"
+              className="absolute -left-0.5 -top-2"
+              aria-hidden="true"
+            >
+              <motion.path
+                d="M5 13 q 3.5 -5 0 -8 q -2.5 -4 0 -5"
+                fill="none"
+                stroke="hsl(var(--saffron))"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                animate={{ opacity: [0, 0.5, 0], y: [2, -6, -10] }}
+                transition={{ duration: 3.2, repeat: Infinity, ease: "easeOut" }}
+              />
+            </motion.svg>
+          )}
+
+          <span>D</span>
+          <span className="relative">
+            {"ı"}
             <motion.span
-              className="absolute left-[0.62em] top-[-0.16em] block h-[0.16em] w-[0.16em] rounded-full bg-ember"
+              className="absolute left-[48%] top-[0.26em] block h-[0.17em] w-[0.17em] -translate-x-1/2 rounded-full bg-ember"
               animate={
-                reduce
-                  ? {}
-                  : {
-                      y: [0, -3, 0],
-                      scaleX: [1, 1.4, 1],
-                    }
+                reduce ? {} : { y: [0, -2.5, 0], scaleX: [1, 1.4, 1] }
               }
-              transition={{
-                duration: 1.6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
             />
           </span>
+          <span>sh&nbsp;It</span>
+
+          <motion.span
+            aria-hidden
+            className="absolute -bottom-[0.16em] left-0 block h-[0.09em] w-full origin-left rounded-full"
+            style={{
+              background:
+                "linear-gradient(90deg, hsl(var(--saffron)), hsl(var(--ember)))",
+            }}
+            initial={reduce ? { scaleX: 1 } : { scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          />
         </span>
       )}
     </span>

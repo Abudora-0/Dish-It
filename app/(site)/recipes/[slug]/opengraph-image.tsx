@@ -36,16 +36,20 @@ export default async function OgImage({
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <div style={{ display: "flex", alignItems: "flex-end", gap: 16 }}>
           <div
             style={{
-              width: 46,
-              height: 20,
-              borderRadius: 999,
-              background: "#e8724c",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 4,
             }}
-          />
-          <div style={{ fontSize: 26, letterSpacing: 8, opacity: 0.7 }}>
+          >
+            <div style={{ display: "flex", width: 9, height: 9, borderRadius: 9, background: "#e8724c" }} />
+            <div style={{ display: "flex", width: 56, height: 28, borderRadius: "30px 30px 0 0", background: "#f6ecd9" }} />
+            <div style={{ display: "flex", width: 64, height: 8, borderRadius: 4, background: "#f6ecd9" }} />
+          </div>
+          <div style={{ fontSize: 26, letterSpacing: 8, opacity: 0.7, paddingBottom: 4 }}>
             DISH IT
           </div>
         </div>

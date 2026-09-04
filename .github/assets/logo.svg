@@ -1,35 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" width="420" height="120" fill="none">
-  <rect width="420" height="120" rx="18" fill="#1c140e"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 130" width="440" height="130" fill="none">
+  <rect width="440" height="130" rx="18" fill="#1c140e"/>
 
-  <!-- steam -->
-  <g stroke="#f2a83c" stroke-width="3" stroke-linecap="round" opacity="0.9">
-    <path d="M70 44 q 10 -14 0 -28 q -10 -14 0 -28">
-      <animate attributeName="opacity" values="0;0.9;0" dur="2.4s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="translate" values="0 6; 0 -14" dur="2.4s" repeatCount="indefinite"/>
-    </path>
-    <path d="M86 44 q -10 -14 0 -28 q 10 -14 0 -28">
-      <animate attributeName="opacity" values="0;0.8;0" dur="2.4s" begin="0.5s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="translate" values="0 6; 0 -16" dur="2.4s" begin="0.5s" repeatCount="indefinite"/>
+  <g transform="translate(34 24)">
+    <g stroke="#f2a83c" stroke-width="3" stroke-linecap="round" fill="none">
+      <path d="M30 52 q 6 -10 0 -19 q -5 -7 0 -14">
+        <animate attributeName="opacity" values="0;0;0.9;0.4;0" keyTimes="0;0.2;0.42;0.68;1" dur="4s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" values="0 6;0 6;0 -6;0 -16;0 -20" keyTimes="0;0.2;0.42;0.7;1" dur="4s" repeatCount="indefinite"/>
+      </path>
+      <path d="M46 52 q -6 -10 0 -19 q 5 -7 0 -14">
+        <animate attributeName="opacity" values="0;0;0.8;0.35;0" keyTimes="0;0.24;0.46;0.7;1" dur="4s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" values="0 6;0 6;0 -6;0 -16;0 -20" keyTimes="0;0.24;0.46;0.72;1" dur="4s" repeatCount="indefinite"/>
+      </path>
+    </g>
+
+    <ellipse cx="38" cy="64" rx="27" ry="6" fill="#f6ecd9"/>
+    <rect x="12" y="55" width="52" height="6" rx="3" fill="#f6ecd9"/>
+
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 0;0 -9;0 -9;0 0;0 0" keyTimes="0;0.18;0.38;0.62;0.8;1" dur="4s" repeatCount="indefinite"/>
+      <path d="M14 56 A24 26 0 0 1 62 56 Z" fill="#f6ecd9"/>
+      <circle cx="38" cy="29" r="3.6" fill="#e8724c"/>
+    </g>
+  </g>
+
+  <g transform="translate(118 0)">
+    <text x="0" y="80" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="600" fill="#f6ecd9">Dish It</text>
+    <circle cx="59" cy="40" r="4.5" fill="#e8724c">
+      <animate attributeName="cy" values="40;33;40" dur="1.6s" repeatCount="indefinite"/>
+      <animate attributeName="rx" values="4.5;6;4.5" dur="1.6s" repeatCount="indefinite"/>
+    </circle>
+    <rect x="0" y="90" width="196" height="4" rx="2" fill="url(#sizzle)">
+      <animate attributeName="width" values="0;196;196;0" keyTimes="0;0.25;0.8;1" dur="4s" repeatCount="indefinite"/>
+    </rect>
+    <path d="M4 34 q 5 -8 0 -13 q -4 -6 0 -9" stroke="#f2a83c" stroke-width="2.4" stroke-linecap="round" fill="none">
+      <animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0 4;0 -6;0 -12" dur="3s" repeatCount="indefinite"/>
     </path>
   </g>
 
-  <!-- tossed morsel -->
-  <circle r="9" fill="#e8724c" cx="52" cy="70">
-    <animate attributeName="cx" values="52;66;80;52" keyTimes="0;0.35;0.55;1" dur="2.6s" repeatCount="indefinite"/>
-    <animate attributeName="cy" values="70;36;36;70" keyTimes="0;0.4;0.55;0.78" dur="2.6s" repeatCount="indefinite"/>
-  </circle>
-
-  <!-- skillet -->
-  <g>
-    <animateTransform attributeName="transform" type="rotate" values="-16 62 84; -16 62 84; 14 62 84; -16 62 84" keyTimes="0;0.2;0.55;1" dur="2.6s" repeatCount="indefinite"/>
-    <ellipse cx="62" cy="84" rx="30" ry="13" fill="#f6ecd9"/>
-    <ellipse cx="62" cy="84" rx="30" ry="13" fill="none" stroke="#f6ecd9" stroke-width="4"/>
-    <rect x="88" y="80" width="36" height="8" rx="4" fill="#f6ecd9"/>
-  </g>
-
-  <!-- wordmark -->
-  <text x="150" y="76" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="600" fill="#f6ecd9">Dish It</text>
-  <circle cx="300" cy="40" r="5" fill="#e8724c">
-    <animate attributeName="cy" values="40;33;40" dur="1.6s" repeatCount="indefinite"/>
-  </circle>
+  <defs>
+    <linearGradient id="sizzle" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f2a83c"/>
+      <stop offset="1" stop-color="#e8724c"/>
+    </linearGradient>
+  </defs>
 </svg>
