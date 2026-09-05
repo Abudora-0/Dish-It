@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { getRecipe } from "@/lib/content";
-import { formatMinutes, totalTime } from "@/lib/utils";
+import { formatTotalTime } from "@/lib/utils";
 
 export const alt = "Dish It recipe";
 export const size = { width: 1200, height: 630 };
@@ -16,8 +16,9 @@ export default async function OgImage({
 
   const title = recipe?.title ?? "Dish It";
   const meta = recipe
-    ? `${recipe.cuisine} - ${formatMinutes(
-        totalTime(recipe.prepMinutes, recipe.cookMinutes),
+    ? `${recipe.cuisine} - ${formatTotalTime(
+        recipe.prepMinutes,
+        recipe.cookMinutes,
       )} - ${recipe.difficulty}`
     : "An animated recipe kitchen";
 

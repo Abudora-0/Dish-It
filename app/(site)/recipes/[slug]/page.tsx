@@ -60,6 +60,7 @@ export default async function RecipePage({
     )
     .slice(0, 3);
 
+  const total = totalTime(recipe.prepMinutes, recipe.cookMinutes);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Recipe",
@@ -68,19 +69,23 @@ export default async function RecipePage({
     recipeCuisine: recipe.cuisine,
     recipeCategory: recipe.category,
     keywords: recipe.dietTags.join(", "),
-    totalTime: `PT${totalTime(recipe.prepMinutes, recipe.cookMinutes)}M`,
-    prepTime: `PT${recipe.prepMinutes}M`,
-    cookTime: `PT${recipe.cookMinutes}M`,
+    ...(total !== undefined ? { totalTime: `PT${total}M` } : {}),
+    ...(recipe.prepMinutes != null ? { prepTime: `PT${recipe.prepMinutes}M` } : {}),
+    ...(recipe.cookMinutes != null ? { cookTime: `PT${recipe.cookMinutes}M` } : {}),
     recipeYield: `${recipe.servings} servings`,
     author: { "@type": "Organization", name: recipe.author },
     url: `${siteUrl}/recipes/${recipe.slug}`,
-    nutrition: {
-      "@type": "NutritionInformation",
-      calories: `${recipe.nutrition.calories} kcal`,
-      proteinContent: `${recipe.nutrition.protein} g`,
-      carbohydrateContent: `${recipe.nutrition.carbs} g`,
-      fatContent: `${recipe.nutrition.fat} g`,
-    },
+    ...(recipe.nutrition
+      ? {
+          nutrition: {
+            "@type": "NutritionInformation",
+            calories: `${recipe.nutrition.calories} kcal`,
+            proteinContent: `${recipe.nutrition.protein} g`,
+            carbohydrateContent: `${recipe.nutrition.carbs} g`,
+            fatContent: `${recipe.nutrition.fat} g`,
+          },
+        }
+      : {}),
     recipeIngredient: recipe.ingredients.map((line) =>
       [line.quantity ?? "", line.unit ?? "", line.item].filter(Boolean).join(" "),
     ),
@@ -118,14 +123,19 @@ export default async function RecipePage({
           </h1>
           <p className="mt-4 max-w-xl text-lg text-fg-soft">{recipe.intro}</p>
 
-          <dl className="mt-6 grid grid-cols-3 gap-3 text-center">
-            <Fact label="Prep" value={formatMinutes(recipe.prepMinutes)} />
-            <Fact label="Cook" value={formatMinutes(recipe.cookMinutes)} />
-            <Fact
-              label="Total"
-              value={formatMinutes(totalTime(recipe.prepMinutes, recipe.cookMinutes))}
-            />
-          </dl>
+          {total !== undefined ? (
+            <dl className="mt-6 grid grid-cols-3 gap-3 text-center">
+              <Fact
+                label="Prep"
+                value={recipe.prepMinutes != null ? formatMinutes(recipe.prepMinutes) : "-"}
+              />
+              <Fact
+                label="Cook"
+                value={recipe.cookMinutes != null ? formatMinutes(recipe.cookMinutes) : "-"}
+              />
+              <Fact label="Total" value={formatMinutes(total)} />
+            </dl>
+          ) : null}
 
           <div className="no-print mt-6 flex flex-wrap gap-3">
             <SaveButton slug={recipe.slug} />
@@ -145,22 +155,28 @@ export default async function RecipePage({
         </div>
       </div>
 
-      <div className="mt-10 grid gap-6 rounded-3xl border border-fg/10 bg-bg-raised p-6 sm:grid-cols-2">
-        <div>
-          <p className="font-mono text-[0.7rem] uppercase tracking-wider text-fg-faint">
-            Per serving
-          </p>
-          <div className="mt-3">
-            <MacroDonut nutrition={recipe.nutrition} />
-          </div>
+      {(recipe.nutrition || recipe.flavor) && (
+        <div className="mt-10 grid gap-6 rounded-3xl border border-fg/10 bg-bg-raised p-6 sm:grid-cols-2">
+          {recipe.nutrition && (
+            <div>
+              <p className="font-mono text-[0.7rem] uppercase tracking-wider text-fg-faint">
+                Per serving
+              </p>
+              <div className="mt-3">
+                <MacroDonut nutrition={recipe.nutrition} />
+              </div>
+            </div>
+          )}
+          {recipe.flavor && (
+            <div className="flex flex-col items-center">
+              <p className="self-start font-mono text-[0.7rem] uppercase tracking-wider text-fg-faint">
+                Flavor profile
+              </p>
+              <FlavorRadar flavor={recipe.flavor} />
+            </div>
+          )}
         </div>
-        <div className="flex flex-col items-center">
-          <p className="self-start font-mono text-[0.7rem] uppercase tracking-wider text-fg-faint">
-            Flavor profile
-          </p>
-          <FlavorRadar flavor={recipe.flavor} />
-        </div>
-      </div>
+      )}
 
       <div className="mt-12">
         <RecipeWorkspace recipe={recipe} techniques={techniques} />
@@ -169,6 +185,21 @@ export default async function RecipePage({
       <div className="no-print mt-12">
         <RatingPanel slug={recipe.slug} />
       </div>
+
+      {recipe.source && (
+        <p className="mt-8 text-xs text-fg-faint">
+          Recipe and photo from{" "}
+          <a
+            href={recipe.source.url}
+            target="_blank"
+            rel="noreferrer"
+            className="underline hover:text-ember"
+          >
+            {recipe.source.name}
+          </a>
+          . Times and difficulty are estimated.
+        </p>
+      )}
 
       {related.length > 0 && (
         <section className="no-print mt-16">

@@ -1,5 +1,6 @@
 export const NAV_LINKS = [
   { href: "/recipes", label: "Recipes", blurb: "Every dish, filterable" },
+  { href: "/cuisines", label: "Cuisines", blurb: "Browse by country" },
   { href: "/discover", label: "Discover", blurb: "Find a dish by mood" },
   { href: "/mixer", label: "Mixer", blurb: "Build a shake or drink" },
   { href: "/planner", label: "Planner", blurb: "Plan the week" },

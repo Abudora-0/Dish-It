@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "seed:ndjson": "node scripts/build-seed-ndjson.mjs"
+    "seed:ndjson": "node scripts/build-seed-ndjson.mjs",
+    "seed:themealdb": "node scripts/import-themealdb.mjs"
   },
   "dependencies": {
     "@sanity/client": "^8.4.0",

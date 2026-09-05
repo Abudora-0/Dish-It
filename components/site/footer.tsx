@@ -55,7 +55,19 @@ export function Footer() {
       </div>
       <div className="border-t border-fg/10">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-fg-faint sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>Built with Next.js, Sanity, and motion. MIT licensed.</p>
+          <p>
+            Built with Next.js, Sanity, and motion. Some recipe data and
+            imagery from{" "}
+            <a
+              href="https://www.themealdb.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-ember"
+            >
+              TheMealDB
+            </a>
+            . MIT licensed.
+          </p>
           <p>Press Ctrl K to search anywhere.</p>
         </div>
       </div>

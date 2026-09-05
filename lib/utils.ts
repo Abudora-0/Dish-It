@@ -2,8 +2,10 @@ export function cn(...parts: Array<string | false | null | undefined>): string {
   return parts.filter(Boolean).join(" ");
 }
 
-export function totalTime(prep: number, cook: number): number {
-  return Math.max(0, Math.round(prep + cook));
+// Undefined means the source recipe never stated a time, not zero.
+export function totalTime(prep?: number, cook?: number): number | undefined {
+  if (prep == null && cook == null) return undefined;
+  return Math.max(0, Math.round((prep ?? 0) + (cook ?? 0)));
 }
 
 export function formatMinutes(mins: number): string {
@@ -12,6 +14,11 @@ export function formatMinutes(mins: number): string {
   const h = Math.floor(mins / 60);
   const m = mins % 60;
   return m ? `${h} hr ${m} min` : `${h} hr`;
+}
+
+export function formatTotalTime(prep?: number, cook?: number): string {
+  const total = totalTime(prep, cook);
+  return total === undefined ? "time varies" : formatMinutes(total);
 }
 
 export function slugHash(input: string): number {

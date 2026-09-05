@@ -103,11 +103,11 @@ export function RecipeExplorer({ recipes }: { recipes: Recipe[] }) {
       if (cuisine && recipe.cuisine !== cuisine) return false;
       if (diet && !recipe.dietTags.includes(diet)) return false;
       if (mood && !recipe.moodTags.includes(mood as never)) return false;
-      if (
-        maxTime &&
-        totalTime(recipe.prepMinutes, recipe.cookMinutes) > Number(maxTime)
-      )
-        return false;
+      if (maxTime) {
+        const total = totalTime(recipe.prepMinutes, recipe.cookMinutes);
+        // Recipes without a stated time are left out of a "max time" filter.
+        if (total === undefined || total > Number(maxTime)) return false;
+      }
       return true;
     });
 
@@ -119,16 +119,18 @@ export function RecipeExplorer({ recipes }: { recipes: Recipe[] }) {
         .map((x) => x.r);
     } else {
       list = [...list].sort((a, b) => {
-        if (sort === "fast")
-          return (
-            totalTime(a.prepMinutes, a.cookMinutes) -
-            totalTime(b.prepMinutes, b.cookMinutes)
-          );
+        if (sort === "fast") {
+          // Untimed recipes sort last.
+          const ta = totalTime(a.prepMinutes, a.cookMinutes) ?? Infinity;
+          const tb = totalTime(b.prepMinutes, b.cookMinutes) ?? Infinity;
+          return ta - tb;
+        }
         if (sort === "easy") {
           const rank = { easy: 0, medium: 1, hard: 2 };
           return rank[a.difficulty] - rank[b.difficulty];
         }
-        if (sort === "light") return a.nutrition.calories - b.nutrition.calories;
+        if (sort === "light")
+          return (a.nutrition?.calories ?? Infinity) - (b.nutrition?.calories ?? Infinity);
         return b.publishedAt.localeCompare(a.publishedAt);
       });
     }

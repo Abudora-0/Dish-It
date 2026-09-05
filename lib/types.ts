@@ -56,8 +56,11 @@ export type Recipe = {
   dietTags: string[];
   moodTags: Mood[];
   difficulty: Difficulty;
-  prepMinutes: number;
-  cookMinutes: number;
+  // Undefined means "not timed" rather than a guess - imported recipes often
+  // do not state prep or cook time, and the UI should say so instead of
+  // inventing a number.
+  prepMinutes?: number;
+  cookMinutes?: number;
   servings: number;
   heroImage: string;
   heroAlt: string;
@@ -66,11 +69,14 @@ export type Recipe = {
   steps: Step[];
   equipment: string[];
   tips: string[];
-  nutrition: Nutrition;
-  flavor: FlavorProfile;
+  // Absent for recipes imported from a source that does not provide it. The
+  // UI hides the related section rather than showing a zeroed out chart.
+  nutrition?: Nutrition;
+  flavor?: FlavorProfile;
   author: string;
   featured: boolean;
   publishedAt: string;
+  source?: { name: string; url: string };
 };
 
 export type Technique = {

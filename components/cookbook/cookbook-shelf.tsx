@@ -7,7 +7,7 @@ import { SaveButton } from "@/components/recipe/save-button";
 import { useCookbook } from "@/lib/hooks/use-cookbook";
 import { useShoppingList } from "@/lib/hooks/use-shopping-list";
 import { SizzleButton } from "@/components/ui/sizzle-button";
-import { formatMinutes, totalTime } from "@/lib/utils";
+import { formatTotalTime } from "@/lib/utils";
 import type { Recipe } from "@/lib/types";
 
 export function CookbookShelf({ recipes }: { recipes: Recipe[] }) {
@@ -87,7 +87,7 @@ export function CookbookShelf({ recipes }: { recipes: Recipe[] }) {
               <div className="min-w-0">
                 <h3 className="truncate font-display text-lg">{recipe.title}</h3>
                 <p className="font-mono text-xs text-fg-faint">
-                  {formatMinutes(totalTime(recipe.prepMinutes, recipe.cookMinutes))}
+                  {formatTotalTime(recipe.prepMinutes, recipe.cookMinutes)}
                 </p>
               </div>
               <SaveButton slug={recipe.slug} compact />

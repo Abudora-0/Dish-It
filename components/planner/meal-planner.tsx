@@ -8,7 +8,7 @@ import { SizzleButton } from "@/components/ui/sizzle-button";
 import { RecipeImage } from "@/components/recipe/recipe-image";
 import { usePlanner, PLANNER_DAYS, type PlannerDay } from "@/lib/hooks/use-planner";
 import { useShoppingList } from "@/lib/hooks/use-shopping-list";
-import { cn, formatMinutes, totalTime } from "@/lib/utils";
+import { cn, formatTotalTime } from "@/lib/utils";
 import type { Recipe } from "@/lib/types";
 
 export function MealPlanner({ recipes }: { recipes: Recipe[] }) {
@@ -89,7 +89,7 @@ export function MealPlanner({ recipes }: { recipes: Recipe[] }) {
               setTarget(null);
             }}
             className={cn(
-              "min-h-[160px] rounded-2xl border p-3 transition-colors",
+              "min-h-[92px] rounded-2xl border p-3 transition-colors md:min-h-[160px]",
               target === day
                 ? "border-ember bg-ember/[0.06]"
                 : "border-fg/12 bg-bg-raised",
@@ -132,9 +132,7 @@ export function MealPlanner({ recipes }: { recipes: Recipe[] }) {
                           {recipe.title}
                         </Link>
                         <span className="font-mono text-[0.62rem] text-fg-faint">
-                          {formatMinutes(
-                            totalTime(recipe.prepMinutes, recipe.cookMinutes),
-                          )}
+                          {formatTotalTime(recipe.prepMinutes, recipe.cookMinutes)}
                         </span>
                       </span>
                       <button

@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { RecipeImage } from "@/components/recipe/recipe-image";
 import { SizzleButton } from "@/components/ui/sizzle-button";
 import { DifficultyMeter, DishBadge } from "@/components/ui/badge";
-import { formatMinutes, slugHash, totalTime } from "@/lib/utils";
+import { formatTotalTime, slugHash } from "@/lib/utils";
 import type { Recipe } from "@/lib/types";
 
 /*
@@ -64,7 +64,7 @@ export function TonightPick({ recipes }: { recipes: Recipe[] }) {
             </h3>
             <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-fg-soft">
               <DishBadge type={recipe.dishType} />
-              <span>{formatMinutes(totalTime(recipe.prepMinutes, recipe.cookMinutes))}</span>
+              <span>{formatTotalTime(recipe.prepMinutes, recipe.cookMinutes)}</span>
               <DifficultyMeter level={recipe.difficulty} />
             </div>
             <p className="mt-3 max-w-lg text-sm text-fg-soft">{recipe.intro}</p>

@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { RecipeImage } from "@/components/recipe/recipe-image";
 import { DishBadge, DifficultyMeter } from "@/components/ui/badge";
 import { SaveButton } from "@/components/recipe/save-button";
-import { formatMinutes, totalTime } from "@/lib/utils";
+import { formatTotalTime } from "@/lib/utils";
 import type { Recipe } from "@/lib/types";
 
 export function RecipeCard({
@@ -53,7 +53,7 @@ export function RecipeCard({
             {recipe.cuisine}
           </span>
           <span aria-hidden>/</span>
-          <span>{formatMinutes(totalTime(recipe.prepMinutes, recipe.cookMinutes))}</span>
+          <span>{formatTotalTime(recipe.prepMinutes, recipe.cookMinutes)}</span>
         </div>
         <h3 className="font-display text-xl leading-tight">
           <Link
@@ -66,9 +66,11 @@ export function RecipeCard({
         <p className="line-clamp-2 text-sm text-fg-soft">{recipe.intro}</p>
         <div className="mt-auto flex items-center justify-between pt-1">
           <DifficultyMeter level={recipe.difficulty} />
-          <span className="font-mono text-xs text-fg-faint">
-            {recipe.nutrition.calories} kcal
-          </span>
+          {recipe.nutrition && (
+            <span className="font-mono text-xs text-fg-faint">
+              {recipe.nutrition.calories} kcal
+            </span>
+          )}
         </div>
       </div>
     </motion.article>
