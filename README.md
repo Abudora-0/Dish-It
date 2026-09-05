@@ -17,7 +17,7 @@ in the mixer. Every control was made to match the food.
 [![Deployed on Vercel](https://img.shields.io/badge/Vercel-ready-000000?style=flat-square&logo=vercel)](https://vercel.com)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-3f7d3f?style=flat-square)](CONTRIBUTING.md)
 
-[Live demo](https://dish-it.vercel.app) &nbsp;&middot;&nbsp; [Report a bug](https://github.com/Abudora-0/Dish-It/issues) &nbsp;&middot;&nbsp; [Request a feature](https://github.com/Abudora-0/Dish-It/issues)
+[Live demo](https://dish-itt.vercel.app) &nbsp;&middot;&nbsp; [Report a bug](https://github.com/Abudora-0/Dish-It/issues) &nbsp;&middot;&nbsp; [Request a feature](https://github.com/Abudora-0/Dish-It/issues)
 
 `recipes` &nbsp; `nextjs` &nbsp; `react` &nbsp; `typescript` &nbsp; `tailwindcss` &nbsp; `framer-motion` &nbsp; `sanity` &nbsp; `pwa` &nbsp; `ui-ux`
 

@@ -13,7 +13,7 @@ export const sanityApiVersion =
 // format means a stray placeholder value never reaches the client factory.
 export const isSanityConfigured = /^[a-z0-9-]+$/.test(sanityProjectId);
 
-const DEFAULT_SITE_URL = "https://dish-it.vercel.app";
+const DEFAULT_SITE_URL = "https://dish-itt.vercel.app";
 
 /*
   Resolve the public site URL from the environment, tolerating a missing value,
