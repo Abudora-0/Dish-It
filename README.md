@@ -30,8 +30,8 @@ in the mixer. Every control was made to match the food.
 Most recipe sites feel the same. Dish It is a small counter argument. The
 scrollbar drips like sauce, the number counters roll like an old till, the theme
 switch is a stove dial, the dropdowns open like a lifting pot lid, and the logo
-tosses a pan on a loop. It is a portfolio piece that takes the interface as
-seriously as the content.
+lifts a serving cloche on a loop. It is a portfolio piece that takes the
+interface as seriously as the content.
 
 ## Highlights
 
@@ -39,7 +39,7 @@ seriously as the content.
 |---|---|---|
 | 01 | **Smart recipe explorer** | Filter by cuisine, diet, mood, time, and what is already in your pantry. The grid re-sorts live and the results reorder by how much of each recipe you can make right now. URL synced so any view is shareable. |
 | 02 | **Interactive cook mode** | Full screen, one step at a time, with stacking countdown timers that keep running while you chop, a screen wake lock, servings scaling, and a herb confetti finish. |
-| 03 | **Flavor and mood wheel** | Drag the wheel or tap a craving. It resolves to a shortlist that matches how you want to eat, blending mood tags with each recipe's flavor vector. |
+| 03 | **Flavor and mood wheel** | Spin it, drag it, or tap a craving. It lands on a mood and resolves to a shortlist that matches how you want to eat, blending mood tags with each recipe's flavor vector. |
 | 04 | **Shake and drink mixer** | Drop parts into the glass and watch it fill and layer. Live nutrition, a flavor radar, layered or blended views, and a URL encoded share link that rebuilds the exact drink. |
 | + | **Your kitchen** | A saved cookbook, a categorized shopping list with a chop to check animation, and a drag and drop weekly meal planner that turns the week into one shopping list. All on device, no account. |
 | + | **Extras** | Command palette search (Ctrl or Cmd + K), animated macro donuts and flavor radars, per recipe Open Graph images, Recipe JSON-LD, a print optimized recipe card, PWA manifest, full keyboard support, reduced motion variants, and a Konami code easter egg. |
@@ -48,17 +48,18 @@ seriously as the content.
 
 - Token driven light and dark themes with a no flash inline script
 - Display type in Fraunces, body in Inter, numerals in Space Mono
-- Generative SVG dish art so no recipe is ever missing a hero image
-- Subtle film grain, steam loops, and a spring based motion language
+- Real photography, with generative SVG dish art as the fallback so no recipe lacks a hero
+- Subtle film grain and a spring based motion language
 - Every custom control lives in [`components/ui`](components/ui) and is keyboard accessible
 
 ## Tech stack
 
 - **Next.js 16** App Router, React 19, Server Components, static generation, Metadata API
 - **Tailwind CSS v4** with a CSS first token theme
-- **motion** (Framer Motion) for the logo, transitions, the wheel, and the glass
+- **motion** (Framer Motion) for the lifting cloche logo, transitions, and the glass
 - **Sanity** headless CMS with an embedded Studio at `/studio`
 - Content adapter pattern: reads Sanity when configured, bundled seed data otherwise
+- Recipes: a hand written starter set plus a batch imported from TheMealDB
 - No database and no required environment variables to deploy
 
 ## Quick start
@@ -82,6 +83,8 @@ seed recipes with zero configuration.
 | `npm run start` | Serve the production build |
 | `npm run lint` | Lint with ESLint |
 | `npm run typecheck` | Type check with `tsc` |
+| `npm run seed:themealdb` | Import a batch of recipes from TheMealDB into the seed |
+| `npm run seed:ndjson` | Rebuild the Sanity import file from the hand written seed |
 
 ## Connect the CMS (optional)
 
@@ -142,13 +145,14 @@ sanity/schemas/      CMS document and object schemas
 - [ ] Optional Sanity backed reviews and ratings
 - [ ] Shared cookbooks via a short link
 - [ ] Unit test coverage for the content adapter and scaling helpers
-- [ ] More seed recipes and a sauces section
+- [ ] A dedicated sauces and dressings section
 - [ ] Voice guided cook mode
 
 ## Contributing
 
 Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) for the setup
-and the ground rules, and please keep the no em dash house style.
+and the ground rules, including the plain punctuation house style (hyphens and
+straight quotes only, enforced in CI).
 
 ## License
 

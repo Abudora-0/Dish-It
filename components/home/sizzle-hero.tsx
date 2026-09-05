@@ -5,27 +5,43 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import { AnimatedLogo } from "@/components/brand/animated-logo";
 import { SizzleLink } from "@/components/ui/sizzle-button";
 import { CountUp } from "@/components/ui/odometer";
-import { slugHash } from "@/lib/utils";
 import {
   BasilIcon,
+  BayLeafIcon,
   ChiliIcon,
+  CinnamonIcon,
   CitrusIcon,
   CloveIcon,
+  CoffeeBeanIcon,
+  GarlicIcon,
   LimeIcon,
   MintIcon,
   PeppercornIcon,
+  RollingPinIcon,
+  SaltIcon,
   StarAniseIcon,
+  WhiskIcon,
 } from "@/components/home/ingredient-icons";
 
+// A curated scatter across the whole hero rather than a tidy edge stack.
+// left / top in %, size in tailwind units.
 const FLOATERS = [
-  { key: "chili", Icon: ChiliIcon },
-  { key: "lime", Icon: LimeIcon },
-  { key: "mint", Icon: MintIcon },
-  { key: "star anise", Icon: StarAniseIcon },
-  { key: "peppercorn", Icon: PeppercornIcon },
-  { key: "basil", Icon: BasilIcon },
-  { key: "citrus", Icon: CitrusIcon },
-  { key: "clove", Icon: CloveIcon },
+  { Icon: ChiliIcon, left: 6, top: 9, size: "h-6 w-6" },
+  { Icon: MintIcon, left: 21, top: 5, size: "h-5 w-5" },
+  { Icon: PeppercornIcon, left: 47, top: 3, size: "h-4 w-4" },
+  { Icon: StarAniseIcon, left: 73, top: 6, size: "h-6 w-6" },
+  { Icon: LimeIcon, left: 92, top: 13, size: "h-5 w-5" },
+  { Icon: GarlicIcon, left: 3, top: 27, size: "h-7 w-7" },
+  { Icon: WhiskIcon, left: 89, top: 31, size: "h-6 w-6" },
+  { Icon: BasilIcon, left: 11, top: 47, size: "h-5 w-5" },
+  { Icon: CinnamonIcon, left: 91, top: 51, size: "h-6 w-6" },
+  { Icon: CloveIcon, left: 5, top: 65, size: "h-6 w-6" },
+  { Icon: RollingPinIcon, left: 85, top: 69, size: "h-7 w-7" },
+  { Icon: CitrusIcon, left: 28, top: 81, size: "h-5 w-5" },
+  { Icon: CoffeeBeanIcon, left: 54, top: 87, size: "h-5 w-5" },
+  { Icon: SaltIcon, left: 15, top: 90, size: "h-6 w-6" },
+  { Icon: BayLeafIcon, left: 71, top: 89, size: "h-5 w-5" },
+  { Icon: ChiliIcon, left: 95, top: 79, size: "h-4 w-4" },
 ];
 
 export function SizzleHero({
@@ -64,31 +80,23 @@ export function SizzleHero({
       />
 
       {!reduce &&
-        FLOATERS.map(({ key, Icon }, index) => {
-          const seed = slugHash(key);
-          // Keep floaters pinned to the left and right gutters, clear of the copy.
-          const onLeft = index % 2 === 0;
-          const edge = 2 + ((seed >> 2) % 7);
-          const left = onLeft ? edge : 100 - edge;
-          const top = 10 + ((seed >> 3) % 78);
-          return (
-            <motion.span
-              key={key}
-              aria-hidden
-              className="pointer-events-none absolute hidden text-fg-faint/70 xl:block"
-              style={{ left: `${left}%`, top: `${top}%` }}
-              animate={{ y: [0, -14, 0], rotate: [0, 6, -4, 0] }}
-              transition={{
-                duration: 6 + (seed % 5),
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: index * 0.4,
-              }}
-            >
-              <Icon className="h-6 w-6" />
-            </motion.span>
-          );
-        })}
+        FLOATERS.map(({ Icon, left, top, size }, index) => (
+          <motion.span
+            key={index}
+            aria-hidden
+            className="pointer-events-none absolute hidden text-fg-faint/60 md:block"
+            style={{ left: `${left}%`, top: `${top}%` }}
+            animate={{ y: [0, -12, 0], rotate: [0, 5, -4, 0] }}
+            transition={{
+              duration: 6 + (index % 5),
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: (index % 6) * 0.5,
+            }}
+          >
+            <Icon className={size} />
+          </motion.span>
+        ))}
 
       <motion.div
         style={{ opacity: fade }}

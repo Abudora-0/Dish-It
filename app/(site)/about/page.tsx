@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const STACK = [
   ["Next.js App Router", "Server components, static generation, and the metadata API."],
   ["Sanity", "Structured content with an embedded studio. The site also ships with seed data."],
-  ["motion", "Every transition, the logo toss, the wheel, and the glass fill."],
+  ["motion", "Every transition, the lifting cloche logo, and the glass fill."],
   ["Tailwind CSS v4", "A token driven theme with full light and dark support."],
 ];
 
@@ -29,7 +29,17 @@ export default function AboutPage() {
         Most recipe sites feel the same. Dish It is a small counter argument.
         Every control was made to match the food: the scrollbar drips like sauce,
         the counters roll like an old till, the theme switch is a stove dial, and
-        the logo tosses a pan on a loop.
+        the logo lifts a serving cloche on a loop.
+      </p>
+      <p className="mt-4 text-fg-soft">
+        Live at{" "}
+        <a
+          href="https://dish-itt.vercel.app"
+          className="text-ember underline-sizzle"
+        >
+          dish-itt.vercel.app
+        </a>
+        .
       </p>
 
       <Reveal className="mt-10">
@@ -53,6 +63,12 @@ export default function AboutPage() {
             A cookbook, a shopping list, and a{" "}
             <Link href="/planner" className="text-ember underline-sizzle">weekly planner</Link>, all stored on your device.
           </li>
+          <li>
+            Over a hundred recipes across{" "}
+            <Link href="/cuisines" className="text-ember underline-sizzle">two dozen cuisines</Link>,
+            a starter set written by hand plus a batch from the TheMealDB
+            community collection.
+          </li>
         </ul>
       </Reveal>
 
@@ -71,9 +87,13 @@ export default function AboutPage() {
       <Reveal className="mt-10">
         <div className="rounded-2xl border border-fg/10 bg-bg-raised p-6 text-sm text-fg-soft">
           <p>
-            Dish It is open source under the MIT license. The recipes here are a
-            starter set. Connect a Sanity project to manage your own from a
-            dashboard, or keep editing the seed files directly.
+            Dish It is open source under the MIT license. Recipe data and
+            imagery for the imported dishes come from{" "}
+            <a href="https://www.themealdb.com/" className="text-ember">
+              TheMealDB
+            </a>
+            . Connect a Sanity project to manage recipes from a dashboard, or
+            keep editing the seed files directly.
           </p>
         </div>
       </Reveal>
