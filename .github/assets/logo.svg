@@ -16,10 +16,10 @@
       <animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite"/>
       <animateTransform attributeName="transform" type="translate" values="0 4;0 -6;0 -12" dur="3s" repeatCount="indefinite"/>
     </path>
-    <text x="0" y="80" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="600" fill="#f6ecd9">Dish It</text>
-    <circle cx="59" cy="40" r="4.5" fill="#e8724c">
-      <animate attributeName="cy" values="40;33;40" dur="1.6s" repeatCount="indefinite"/>
-      <animate attributeName="r" values="4.5;5.6;4.5" dur="1.6s" repeatCount="indefinite"/>
+    <text x="0" y="80" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="600" fill="#f6ecd9">Dısh It</text>
+    <circle cx="53" cy="44" r="4.5" fill="#e8724c">
+      <animate attributeName="cy" values="44;38;44" dur="1.6s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="4.5;5.4;4.5" dur="1.6s" repeatCount="indefinite"/>
     </circle>
     <rect x="0" y="90" width="196" height="4" rx="2" fill="url(#sizzle)">
       <animate attributeName="width" values="0;196;196;196" keyTimes="0;0.3;0.9;1" dur="4s" repeatCount="indefinite"/>
