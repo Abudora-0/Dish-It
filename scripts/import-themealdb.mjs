@@ -80,6 +80,19 @@ const MOOD_BY_CATEGORY = {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+// The project bans em and en dashes and prefers straight quotes. Source text
+// from an external database has plenty of both.
+function clean(value) {
+  return (value ?? "")
+    .replace(/—/g, " - ")
+    .replace(/–/g, "-")
+    .replace(/[‘’‚′]/g, "'")
+    .replace(/[“”„″]/g, '"')
+    .replace(/…/g, "...")
+    .replace(/ /g, " ")
+    .replace(/ {2,}/g, " ");
+}
+
 async function getJson(url) {
   const res = await fetch(url, { headers: { "user-agent": "dish-it-import" } });
   if (!res.ok) throw new Error(`${res.status} ${url}`);
@@ -118,13 +131,15 @@ function toSteps(instructions) {
       parts.push(sentences.slice(i, i + 2).join(" ").trim());
     }
   }
-  return parts.slice(0, 12).map((instruction) => ({ instruction }));
+  return parts.slice(0, 12).map((instruction) => ({
+    instruction: clean(instruction),
+  }));
 }
 
 function toIngredients(meal) {
   const lines = [];
   for (let i = 1; i <= 20; i += 1) {
-    const item = (meal[`strIngredient${i}`] ?? "").trim().replace(/\s+/g, " ");
+    const item = clean((meal[`strIngredient${i}`] ?? "").trim()).trim();
     if (!item) continue;
     const { quantity, unit } = parseMeasure(meal[`strMeasure${i}`] ?? "");
     lines.push({ quantity, unit, item, pantry: false });
@@ -155,14 +170,14 @@ function introFor(meal) {
   const context = `${article(area)} ${area} ${(
     meal.strCategory ?? "recipe"
   ).toLowerCase()} dish.`;
-  return trimmed ? `${context} ${trimmed}` : context;
+  return clean(trimmed ? `${context} ${trimmed}` : context).trim();
 }
 
 function mapMeal(meal) {
   const ingredients = toIngredients(meal);
   const steps = toSteps(meal.strInstructions);
   const category = meal.strCategory ?? "Misc";
-  const title = (meal.strMeal ?? "").trim().replace(/\s+/g, " ");
+  const title = clean((meal.strMeal ?? "").trim()).trim();
   const dietTags = [];
   if (category === "Vegan") dietTags.push("vegan");
   if (category === "Vegetarian") dietTags.push("vegetarian");
