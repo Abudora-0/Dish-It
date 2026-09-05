@@ -6,16 +6,26 @@ import { AnimatedLogo } from "@/components/brand/animated-logo";
 import { SizzleLink } from "@/components/ui/sizzle-button";
 import { CountUp } from "@/components/ui/odometer";
 import { slugHash } from "@/lib/utils";
+import {
+  BasilIcon,
+  ChiliIcon,
+  CitrusIcon,
+  CloveIcon,
+  LimeIcon,
+  MintIcon,
+  PeppercornIcon,
+  StarAniseIcon,
+} from "@/components/home/ingredient-icons";
 
 const FLOATERS = [
-  "chili",
-  "lime",
-  "mint",
-  "star anise",
-  "peppercorn",
-  "basil",
-  "citrus",
-  "clove",
+  { key: "chili", Icon: ChiliIcon },
+  { key: "lime", Icon: LimeIcon },
+  { key: "mint", Icon: MintIcon },
+  { key: "star anise", Icon: StarAniseIcon },
+  { key: "peppercorn", Icon: PeppercornIcon },
+  { key: "basil", Icon: BasilIcon },
+  { key: "citrus", Icon: CitrusIcon },
+  { key: "clove", Icon: CloveIcon },
 ];
 
 export function SizzleHero({
@@ -54,8 +64,8 @@ export function SizzleHero({
       />
 
       {!reduce &&
-        FLOATERS.map((label, index) => {
-          const seed = slugHash(label);
+        FLOATERS.map(({ key, Icon }, index) => {
+          const seed = slugHash(key);
           // Keep floaters pinned to the left and right gutters, clear of the copy.
           const onLeft = index % 2 === 0;
           const edge = 2 + ((seed >> 2) % 7);
@@ -63,14 +73,10 @@ export function SizzleHero({
           const top = 10 + ((seed >> 3) % 78);
           return (
             <motion.span
-              key={label}
+              key={key}
               aria-hidden
-              className="pointer-events-none absolute hidden font-mono text-[0.7rem] uppercase tracking-widest text-fg-faint xl:block"
-              style={{
-                left: `${left}%`,
-                top: `${top}%`,
-                transform: onLeft ? "none" : "translateX(-100%)",
-              }}
+              className="pointer-events-none absolute hidden text-fg-faint/70 xl:block"
+              style={{ left: `${left}%`, top: `${top}%` }}
               animate={{ y: [0, -14, 0], rotate: [0, 6, -4, 0] }}
               transition={{
                 duration: 6 + (seed % 5),
@@ -79,7 +85,7 @@ export function SizzleHero({
                 delay: index * 0.4,
               }}
             >
-              {label}
+              <Icon className="h-6 w-6" />
             </motion.span>
           );
         })}
@@ -122,7 +128,7 @@ export function SizzleHero({
             Find by mood
           </SizzleLink>
         </div>
-        <dl className="mx-auto mt-12 grid max-w-md grid-cols-3 gap-4 text-center">
+        <dl className="mx-auto mt-12 grid max-w-xs grid-cols-3 gap-3 text-center sm:max-w-md sm:gap-4">
           <Stat label="recipes" value={recipeCount} />
           <Stat label="cuisines" value={cuisineCount} />
           <Stat label="mixer parts" value={21} />
@@ -135,10 +141,10 @@ export function SizzleHero({
 function Stat({ label, value }: { label: string; value: number }) {
   return (
     <div>
-      <dd className="font-display text-3xl text-fg">
+      <dd className="font-display text-2xl text-fg sm:text-3xl">
         <CountUp to={value} />
       </dd>
-      <dt className="font-mono text-[0.7rem] uppercase tracking-widest text-fg-faint">
+      <dt className="font-mono text-[0.58rem] uppercase tracking-wide text-fg-faint sm:text-[0.7rem] sm:tracking-widest">
         {label}
       </dt>
     </div>

@@ -11,10 +11,10 @@ type Props = {
 };
 
 /*
-  Dish It mark: a domed serving cloche that lifts to release steam, then settles.
-  The wordmark carries a sizzle underline that draws itself and a bouncing sauce
-  drop for the tittle on the i. Everything freezes to a clean static state under
-  reduced motion.
+  Dish It mark: a domed serving cloche that lifts and settles, revealing the
+  dish underneath. The wordmark carries a sizzle underline that draws itself
+  and a bouncing sauce drop for the tittle on the i. Everything freezes to a
+  clean static state under reduced motion.
 */
 export function AnimatedLogo({
   className,
@@ -34,14 +34,6 @@ export function AnimatedLogo({
         transition: { ...loop, times, ease: "easeInOut" as const },
       };
 
-  const steamMotion = reduce
-    ? { opacity: 0 }
-    : {
-        opacity: [0, 0, 0.85, 0.5, 0, 0],
-        y: [4, 4, -3, -11, -15, -15],
-        transition: { ...loop, times, ease: "easeOut" as const },
-      };
-
   return (
     <span
       className={cn("inline-flex items-center gap-2.5 select-none", className)}
@@ -53,31 +45,6 @@ export function AnimatedLogo({
         whileHover={interactive && !reduce ? { scale: 1.07 } : undefined}
         aria-hidden="true"
       >
-        <g strokeLinecap="round" fill="none" strokeWidth="2.6">
-          <motion.path
-            d="M26 42 q 5 -8 0 -15 q -4 -6 0 -12"
-            stroke="hsl(var(--saffron))"
-            animate={steamMotion}
-          />
-          <motion.path
-            d="M38 42 q -5 -8 0 -15 q 4 -6 0 -12"
-            stroke="hsl(var(--saffron))"
-            animate={
-              reduce
-                ? { opacity: 0 }
-                : {
-                    ...steamMotion,
-                    transition: {
-                      ...loop,
-                      times,
-                      ease: "easeOut" as const,
-                      delay: 0.25,
-                    },
-                  }
-            }
-          />
-        </g>
-
         <ellipse cx="32" cy="52" rx="22" ry="5" fill="hsl(var(--ink))" />
         <rect
           x="11"
