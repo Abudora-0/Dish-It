@@ -213,7 +213,7 @@ export function Mixer({ components }: { components: DrinkComponent[] }) {
             />
           </div>
 
-          <dl className="mt-5 grid grid-cols-4 gap-2 text-center">
+          <dl className="mt-5 grid grid-cols-2 gap-2 text-center min-[420px]:grid-cols-4">
             <Metric label="kcal" value={Math.round(nutrition.calories)} />
             <Metric label="protein" value={Math.round(nutrition.protein)} />
             <Metric label="carbs" value={Math.round(nutrition.carbs)} />

@@ -72,8 +72,8 @@ export function PantryMatch({
               onChange(value.slice(0, -1));
             }
           }}
-          placeholder={value.length ? "add another" : "type an ingredient and press enter"}
-          className="min-w-[12rem] flex-1 bg-transparent py-1 text-sm outline-none placeholder:text-fg-faint"
+          placeholder={value.length ? "add another" : "add an ingredient"}
+          className="min-w-[8rem] flex-1 bg-transparent py-1 text-sm outline-none placeholder:text-fg-faint"
           aria-label="Add pantry ingredient"
         />
       </div>
