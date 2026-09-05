@@ -84,12 +84,12 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 // from an external database has plenty of both.
 function clean(value) {
   return (value ?? "")
-    .replace(/—/g, " - ")
-    .replace(/–/g, "-")
-    .replace(/[‘’‚′]/g, "'")
-    .replace(/[“”„″]/g, '"')
-    .replace(/…/g, "...")
-    .replace(/ /g, " ")
+    .replace(/\u2014/g, " - ")
+    .replace(/\u2013/g, "-")
+    .replace(/[\u2018\u2019\u201A\u2032]/g, "'")
+    .replace(/[\u201C\u201D\u201E\u2033]/g, '"')
+    .replace(/\u2026/g, "...")
+    .replace(/\u00A0/g, " ")
     .replace(/ {2,}/g, " ");
 }
 
