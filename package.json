@@ -14,7 +14,7 @@
     "seed:themealdb": "node scripts/import-themealdb.mjs"
   },
   "dependencies": {
-    "@sanity/client": "^8.4.0",
+    "@sanity/client": "^8.5.0",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^6.12.0",
     "motion": "^13.2.0",
