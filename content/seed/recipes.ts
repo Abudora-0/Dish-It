@@ -68,8 +68,8 @@ export const recipes: Recipe[] = [
     prepMinutes: 10,
     cookMinutes: 12,
     servings: 2,
-    heroImage: "https://images.unsplash.com/photo-1599789197237-5866b38a5774?auto=format&fit=crop&w=1400&q=75",
-    heroAlt: "A bowl of charred corn with lime crema, cotija, and chili",
+    heroImage: "https://images.unsplash.com/photo-1722890953219-f05ba09d5b30?auto=format&fit=crop&w=1400&q=75",
+    heroAlt: "Cobs of corn charred dark over an open flame",
     intro:
       "Everything you love about street corn, loosened into a bowl you can eat with a spoon. Char the kernels hard so they keep a smoky bite under the dressing.",
     ingredients: [
@@ -109,8 +109,8 @@ export const recipes: Recipe[] = [
     prepMinutes: 15,
     cookMinutes: 25,
     servings: 2,
-    heroImage: "https://images.unsplash.com/photo-1623341214825-9f4f963727da?auto=format&fit=crop&w=1400&q=75",
-    heroAlt: "A steaming bowl of miso ramen with mushrooms, corn, and a soft egg",
+    heroImage: "https://images.unsplash.com/photo-1695389189682-bab675486f83?auto=format&fit=crop&w=1400&q=75",
+    heroAlt: "An overhead blue bowl of ramen with a halved soft egg, greens, and chili",
     intro:
       "A weeknight broth that tastes long simmered thanks to roasted mushrooms and a spoonful of miso stirred in at the very end so it stays alive.",
     ingredients: [
@@ -152,8 +152,8 @@ export const recipes: Recipe[] = [
     prepMinutes: 10,
     cookMinutes: 15,
     servings: 3,
-    heroImage: "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=1400&q=75",
-    heroAlt: "Three corn tortillas filled with smoky black beans, slaw, and avocado",
+    heroImage: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1400&q=75",
+    heroAlt: "A row of soft tacos with beans, avocado, red onion, and a squeeze of lime",
     intro:
       "Pantry tacos with real depth. Chipotle and a squeeze of lime turn a can of beans into a filling nobody guesses was fifteen minutes of work.",
     ingredients: [
@@ -397,8 +397,8 @@ export const recipes: Recipe[] = [
     prepMinutes: 15,
     cookMinutes: 12,
     servings: 18,
-    heroImage: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1400&q=75",
-    heroAlt: "Crackle topped chocolate cookies with a nutty tahini swirl",
+    heroImage: "https://images.unsplash.com/photo-1590080874088-eec64895b423?auto=format&fit=crop&w=1400&q=75",
+    heroAlt: "A stack of dark chocolate cookies with a nutty crumb on a green plate",
     intro:
       "Fudgy in the center with a paper thin crackle on top. Tahini keeps them from being too rich and adds a savory hum you cannot quite place.",
     ingredients: [
