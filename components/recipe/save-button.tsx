@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { useCookbook } from "@/lib/hooks/use-cookbook";
+import { toggleCookbook, useIsInCookbook } from "@/lib/hooks/use-cookbook";
 import { cn } from "@/lib/utils";
 
 export function SaveButton({
@@ -11,18 +11,17 @@ export function SaveButton({
   slug: string;
   compact?: boolean;
 }) {
-  const { has, toggle, ready } = useCookbook();
+  const saved = useIsInCookbook(slug);
   const reduce = useReducedMotion();
-  const saved = ready && has(slug);
 
   if (compact) {
     return (
       <button
         type="button"
-        onClick={() => toggle(slug)}
+        onClick={() => toggleCookbook(slug)}
         aria-pressed={saved}
         aria-label={saved ? "Remove from cookbook" : "Save to cookbook"}
-        className="grid h-9 w-9 place-items-center rounded-full border border-fg/15 bg-bg/80 backdrop-blur transition-colors hover:border-ember"
+        className="grid h-9 w-9 place-items-center rounded-full border border-fg/15 bg-bg/90 transition-colors hover:border-ember"
       >
         <BowlMark filled={saved} reduce={!!reduce} />
       </button>
@@ -32,7 +31,7 @@ export function SaveButton({
   return (
     <button
       type="button"
-      onClick={() => toggle(slug)}
+      onClick={() => toggleCookbook(slug)}
       aria-pressed={saved}
       className={cn(
         "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors",

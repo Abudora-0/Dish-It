@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
+import { useMediaQuery } from "@/lib/hooks/use-media-query";
 import { AnimatedLogo } from "@/components/brand/animated-logo";
 import { SizzleLink } from "@/components/ui/sizzle-button";
 import { CountUp } from "@/components/ui/odometer";
@@ -52,39 +52,28 @@ export function SizzleHero({
   cuisineCount: number;
 }) {
   const reduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 140]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -90]);
-  const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  // The drifting line art is desktop only: it adds nothing on a phone and the
+  // animated layers are the expensive part on a small device.
+  const desktop = useMediaQuery("(min-width: 768px) and (hover: hover)");
+  const decorate = desktop && !reduce;
 
   return (
-    <section
-      ref={ref}
-      className="relative overflow-hidden px-4 pb-16 pt-14 sm:px-6 sm:pt-20"
-    >
-      <motion.div
+    <section className="relative overflow-hidden px-4 pb-16 pt-14 sm:px-6 sm:pt-20">
+      <div
         aria-hidden
-        style={{ y: y1 }}
-        className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full blur-3xl"
-      >
-        <div className="h-full w-full rounded-full bg-ember/20" />
-      </motion.div>
-      <motion.div
+        className="pointer-events-none absolute -left-20 top-10 h-64 w-64 rounded-full bg-ember/20 blur-2xl"
+      />
+      <div
         aria-hidden
-        style={{ y: y2 }}
-        className="pointer-events-none absolute -right-24 top-40 h-80 w-80 rounded-full bg-basil/20 blur-3xl"
+        className="pointer-events-none absolute -right-24 top-40 h-72 w-72 rounded-full bg-basil/20 blur-2xl"
       />
 
-      {!reduce &&
+      {decorate &&
         FLOATERS.map(({ Icon, left, top, size }, index) => (
           <motion.span
             key={index}
             aria-hidden
-            className="pointer-events-none absolute hidden text-fg-faint/60 md:block"
+            className="pointer-events-none absolute text-fg-faint/60"
             style={{ left: `${left}%`, top: `${top}%` }}
             animate={{ y: [0, -12, 0], rotate: [0, 5, -4, 0] }}
             transition={{
@@ -98,12 +87,9 @@ export function SizzleHero({
           </motion.span>
         ))}
 
-      <motion.div
-        style={{ opacity: fade }}
-        className="relative mx-auto max-w-4xl text-center"
-      >
+      <div className="relative mx-auto max-w-4xl text-center">
         <div className="mb-6 flex justify-center">
-          <AnimatedLogo withWordmark={false} markClassName="h-16 w-16" />
+          <AnimatedLogo withWordmark={false} markClassName="h-16 w-16" loop />
         </div>
         <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-ember">
           Food / Shakes / Drinks
@@ -141,7 +127,7 @@ export function SizzleHero({
           <Stat label="cuisines" value={cuisineCount} />
           <Stat label="mixer parts" value={21} />
         </dl>
-      </motion.div>
+      </div>
     </section>
   );
 }

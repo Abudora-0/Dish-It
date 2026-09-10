@@ -8,6 +8,11 @@ type Props = {
   markClassName?: string;
   withWordmark?: boolean;
   interactive?: boolean;
+  /*
+    Run the looping cloche lift. Off by default so the dozens of places the
+    logo appears in page chrome are static; the home hero opts in.
+  */
+  loop?: boolean;
 };
 
 /*
@@ -21,18 +26,20 @@ export function AnimatedLogo({
   markClassName,
   withWordmark = true,
   interactive = true,
+  loop = false,
 }: Props) {
   const reduce = useReducedMotion();
+  const animate = loop && !reduce;
 
-  const loop = { duration: 3.8, repeat: Infinity, repeatDelay: 1.1 };
+  const loopTransition = { duration: 3.8, repeat: Infinity, repeatDelay: 1.1 };
   const times = [0, 0.18, 0.36, 0.62, 0.8, 1];
 
-  const domeMotion = reduce
-    ? {}
-    : {
+  const domeMotion = animate
+    ? {
         y: [0, 0, -7, -7, 0, 0],
-        transition: { ...loop, times, ease: "easeInOut" as const },
-      };
+        transition: { ...loopTransition, times, ease: "easeInOut" as const },
+      }
+    : {};
 
   return (
     <span
@@ -66,7 +73,7 @@ export function AnimatedLogo({
 
       {withWordmark && (
         <span className="relative font-display text-[1.35rem] font-semibold leading-none tracking-tight">
-          {!reduce && (
+          {animate && (
             <motion.svg
               width="10"
               height="14"
@@ -91,9 +98,7 @@ export function AnimatedLogo({
             {"ı"}
             <motion.span
               className="absolute left-[48%] top-[0.26em] block h-[0.17em] w-[0.17em] -translate-x-1/2 rounded-full bg-ember"
-              animate={
-                reduce ? {} : { y: [0, -2.5, 0], scaleX: [1, 1.4, 1] }
-              }
+              animate={animate ? { y: [0, -2.5, 0], scaleX: [1, 1.4, 1] } : {}}
               transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
             />
           </span>

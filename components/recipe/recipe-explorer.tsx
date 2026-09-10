@@ -1,8 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AnimatePresence, motion } from "motion/react";
 import { RecipeCard } from "@/components/recipe/recipe-card";
 import { BurnerTabs } from "@/components/ui/burner-tabs";
 import { FlavorSelect } from "@/components/ui/flavor-select";
@@ -71,7 +70,13 @@ export function RecipeExplorer({ recipes }: { recipes: Recipe[] }) {
     [recipes],
   );
 
+  const firstRun = useRef(true);
   useEffect(() => {
+    // State is seeded from the URL, so the first pass has nothing to write.
+    if (firstRun.current) {
+      firstRun.current = false;
+      return;
+    }
     const next = new URLSearchParams();
     if (dish !== "all") next.set("dish", dish);
     if (cuisine) next.set("cuisine", cuisine);
@@ -136,6 +141,32 @@ export function RecipeExplorer({ recipes }: { recipes: Recipe[] }) {
     }
     return list;
   }, [recipes, dish, cuisine, diet, mood, maxTime, sort, pantry, matchScore]);
+
+  const PAGE = 24;
+  const [visible, setVisible] = useState(PAGE);
+
+  // Reset the page size whenever the result set changes, during render rather
+  // than in an effect so there is no frame showing the old count.
+  const filterKey = `${dish}|${cuisine}|${diet}|${mood}|${maxTime}|${sort}|${pantry.join(",")}`;
+  const [prevKey, setPrevKey] = useState(filterKey);
+  if (filterKey !== prevKey) {
+    setPrevKey(filterKey);
+    setVisible(PAGE);
+  }
+
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const node = sentinelRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible((v) => v + PAGE);
+      },
+      { rootMargin: "600px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [visible, results.length]);
 
   const activeFilters =
     (dish !== "all" ? 1 : 0) +
@@ -228,27 +259,29 @@ export function RecipeExplorer({ recipes }: { recipes: Recipe[] }) {
       </div>
 
       <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <AnimatePresence>
-          {results.map((recipe, index) => (
-            <motion.div
-              key={recipe._id}
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.25 }}
-            >
-              <div className="relative">
-                {pantry.length > 0 && (
-                  <span className="absolute -top-2 left-3 z-20 rounded-full bg-fg px-2 py-0.5 font-mono text-[0.65rem] text-bg">
-                    {Math.round(matchScore(recipe) * 100)}% match
-                  </span>
-                )}
-                <RecipeCard recipe={recipe} index={index} />
-              </div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+        {results.slice(0, visible).map((recipe, index) => (
+          <div key={recipe._id} className="relative">
+            {pantry.length > 0 && (
+              <span className="absolute -top-2 left-3 z-20 rounded-full bg-fg px-2 py-0.5 font-mono text-[0.65rem] text-bg">
+                {Math.round(matchScore(recipe) * 100)}% match
+              </span>
+            )}
+            <RecipeCard recipe={recipe} index={index % PAGE} />
+          </div>
+        ))}
       </div>
+
+      {visible < results.length && (
+        <div ref={sentinelRef} className="mt-8 flex justify-center">
+          <SizzleButton
+            variant="ghost"
+            size="sm"
+            onClick={() => setVisible((v) => v + PAGE)}
+          >
+            Show more ({results.length - visible} left)
+          </SizzleButton>
+        </div>
+      )}
 
       {results.length === 0 && (
         <div className="mt-10 rounded-2xl border border-dashed border-fg/20 p-10 text-center">
