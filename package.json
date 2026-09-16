@@ -14,15 +14,15 @@
     "seed:themealdb": "node scripts/import-themealdb.mjs"
   },
   "dependencies": {
-    "@sanity/client": "^8.4.0",
+    "@sanity/client": "^8.6.1",
     "@sanity/image-url": "^2.1.1",
-    "@sanity/vision": "^6.12.0",
+    "@sanity/vision": "^6.13.2",
     "motion": "^13.2.0",
-    "next": "16.3.4",
+    "next": "16.3.5",
     "next-sanity": "^13.3.4",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "sanity": "^6.12.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "sanity": "^6.13.2",
     "styled-components": "^6.1.19"
   },
   "devDependencies": {
